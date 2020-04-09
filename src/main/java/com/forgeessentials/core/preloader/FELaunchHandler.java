@@ -86,13 +86,6 @@ public class FELaunchHandler implements ITweaker
         MixinBootstrap.init();
         MixinEnvironment.setCompatibilityLevel(CompatibilityLevel.JAVA_8);
 
-        try {
-            URI uri = this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI();
-            MixinBootstrap.getPlatform().addContainer(uri);
-        } catch (URISyntaxException e) {
-            launchLog.error(e);
-        }
-
         // Fix CoFH compatibility. Fixes #1903
         MixinEnvironment.getEnvironment(Phase.PREINIT).addTransformerExclusion("cofh.asm.CoFHAccessTransformer");
 
